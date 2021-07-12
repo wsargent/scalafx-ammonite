@@ -4,7 +4,7 @@
 
 [ScalaFX](http://www.scalafx.org/) is a framework providing a DSL for [JavaFX](https://openjfx.io/), providing a GUI interface.
 
-With their powers combined, you can script GUI tools using Scala.
+With their powers combined, you can script GUI tools using Scala, without having to run sbt or any kind of build process.
 
 ## Requirements
 
