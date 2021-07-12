@@ -1,6 +1,7 @@
-#!/usr/bin/env -S amm --predef-code 'interp.load.cp(ammonite.ops.Path("/home/wsargent/work/scalafx-ammonite/sfxml"))'
+#!/usr/bin/env amm
 
 import $file.jfx
+import $cp.sfxml
 
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
@@ -22,6 +23,29 @@ import java.util.ResourceBundle
 @main
 def main() {
   FXMLAdoptionForm.main(Array())
+}
+
+/** Example of using FXMLLoader from ScalaFX.
+  *
+  * From https://github.com/scalafx/ProScalaFX/blob/master/src/proscalafx/ch10/fxml/FXMLAdoptionForm.scala
+  *
+  * @author Jarek Sacha
+  */
+object FXMLAdoptionForm extends JFXApp3 {
+
+  override def start(): Unit = {
+    // Possible because the shebang defines interp.load.cp using predef up top :-)
+    val resource = getClass.getResource("/AdoptionForm.fxml")
+    if (resource == null) {
+      throw new IOException("Cannot load resource: AdoptionForm.fxml")
+    }
+
+    val root:jfxs.Parent = jfxf.FXMLLoader.load(resource)
+    stage = new PrimaryStage() {
+      title = "FXML GridPane Demo"
+      scene = new Scene(root)
+    }
+  }
 }
 
 class AdoptionFormController extends jfxf.Initializable {
@@ -54,28 +78,5 @@ class AdoptionFormController extends jfxf.Initializable {
 
   def initialize(url: URL, rb: ResourceBundle): Unit = {
     grid = new GridPane(gridDelegate)
-  }
-}
-
-/** Example of using FXMLLoader from ScalaFX.
-  *
-  * From https://github.com/scalafx/ProScalaFX/blob/master/src/proscalafx/ch10/fxml/FXMLAdoptionForm.scala
-  *
-  * @author Jarek Sacha
-  */
-object FXMLAdoptionForm extends JFXApp3 {
-
-  override def start(): Unit = {
-    // Possible because the shebang defines interp.load.cp using predef up top :-)
-    val resource = getClass.getResource("/AdoptionForm.fxml")
-    if (resource == null) {
-      throw new IOException("Cannot load resource: AdoptionForm.fxml")
-    }
-
-    val root:jfxs.Parent = jfxf.FXMLLoader.load(resource)
-    stage = new PrimaryStage() {
-      title = "FXML GridPane Demo"
-      scene = new Scene(root)
-    }
   }
 }

@@ -30,19 +30,7 @@ amm ./helloworld.sc
 
 You should see a "Hello World" GUI box show up.
 
-For a more complex example, you can see the AdoptionForm.  This is a bit more involved because you'll have to edit the shebang in `adoption.sc` from
-
-```
-#!/usr/bin/env -S amm --predef-code 'interp.load.cp(ammonite.ops.Path("/home/wsargent/work/scalafx-ammonite/sfxml"))'
-```
-
-to 
-
-```
-#!/usr/bin/env -S amm --predef-code 'interp.load.cp(ammonite.ops.Path("<your-checkout-path>/sfxml"))'
-```
-
-After you've done that, you can run an FXML template:
+For a more complex example, you can see the AdoptionForm, which uses FXML:
 
 ```
 amm ./adoption.sc
